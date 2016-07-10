@@ -85,3 +85,27 @@ from Reviewer, Movie, Rating
 where Reviewer.rID = Rating.rID 
 and Rating.mID = Movie.mID
 and name = 'Chris Jackson';
+
+#
+# Q5
+#
+SELECT distinct name, title, stars, ratingDate from Movie, Reviewer, Rating 
+where Reviewer.rID=Rating.rID and Movie.mID = Rating.mID 
+ORDER BY name, title, stars;
+
+#
+# Q6
+#
+SELECT name, title from Reviewer, Movie, Rating R1, Rating R2
+where R1.mID = movie.mID and R2.mID = movie.mID and 
+Reviewer.rID=R1.rID and
+R1.riD = R2.riD and R1.mID = R2.mID and R2.stars > R1.stars 
+and R2.ratingDate > R1.ratingDate ;
+
+#
+# Q7
+#
+select title, MAX(stars) from Rating
+join Movie on Movie.mID=Rating.mID
+group by Movie.mID
+order by title;
